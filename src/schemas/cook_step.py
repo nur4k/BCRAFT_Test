@@ -2,7 +2,6 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-
 class CookStep(BaseModel):
     id: int
     step: str

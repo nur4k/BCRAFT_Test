@@ -2,15 +2,15 @@ import jwt
 
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from sqlalchemy import delete, select, update
 
+from sqlalchemy import delete, select, update
 from sqlalchemy.orm import Session
 
 from src.config.settings import user_settings
 from src.database.models.models import User
 from src.schemas.user import UserIn, UserOut, UserUpdate
-from src.services.user.hash_password import get_password_hash, verify_password
 from src.services.user.token import create_access_token
+from src.services.user.hash_password import get_password_hash, verify_password
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")

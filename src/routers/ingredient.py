@@ -3,9 +3,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from src.schemas import ingredient
-from src.schemas.user import UserOut
 from src.services import ingredients
-from src.services.user import user
 from src.database.dependencies import get_async_session
 
 

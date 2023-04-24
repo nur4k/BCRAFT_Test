@@ -7,7 +7,6 @@ from httpx import AsyncClient
 class RecipeIngredient:
     num: int
 
-
 async def test_add_recipe(ac: AsyncClient):
     data = {
         "title": "Test Recipe",

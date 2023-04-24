@@ -1,20 +1,18 @@
 import main
-
 import pytest
-
 import asyncio
-from fastapi.testclient import TestClient
-
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.pool import NullPool
-from sqlalchemy.orm import sessionmaker
-
-from src.database.dependencies import get_async_session
-from src.database.base import Base
-from src.config.settings import test_settings
 
 from typing import AsyncGenerator
 
+from fastapi.testclient import TestClient
+
+from sqlalchemy.pool import NullPool
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+
+from src.database.base import Base
+from src.config.settings import test_settings
+from src.database.dependencies import get_async_session
 
 from httpx import AsyncClient
 
@@ -38,10 +36,8 @@ async def prepare_database():
     async with engine_test.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
 
-# SETUP
 @pytest.fixture(scope='session')
 def event_loop(request):
-    """Create an instance of the default event loop for each test case."""
     loop = asyncio.get_event_loop_policy().new_event_loop()
     yield loop
     loop.close()
