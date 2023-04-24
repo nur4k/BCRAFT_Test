@@ -24,16 +24,16 @@ async def update_recipe(session: Session, id: int, recipe: recipe.CreateRecipe):
     if not recipes:
         raise HTTPException("ERROR!")
     if recipe.title:
-        update_recipe = await session.execute(update(Recipe).where(Recipe.id == id).values(title=recipe.title))
+        await session.execute(update(Recipe).where(Recipe.id == id).values(title=recipe.title))
         await session.commit()
     elif recipe.description:
-        update_recipe = await session.execute(update(Recipe).where(Recipe.id == id).values(description=recipe.description))
+        await session.execute(update(Recipe).where(Recipe.id == id).values(description=recipe.description))
         await session.commit()
     elif recipe.url:
-        update_recipe = await session.execute(update(Recipe).where(Recipe.id == id).values(rate=recipe.url))
+        await session.execute(update(Recipe).where(Recipe.id == id).values(rate=recipe.url))
         await session.commit()
     elif recipe:
-        update_recipe = await session.execute(update(Recipe).where(Recipe.id == id).values(**recipe.dict()))
+        await session.execute(update(Recipe).where(Recipe.id == id).values(**recipe.dict()))
         await session.commit()
     return {"msg": "Succesfull updated recipe!"}
 
