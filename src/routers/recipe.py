@@ -9,7 +9,7 @@ from src.services import recipes, utils
 from src.database.dependencies import get_async_session
 
 
-router = APIRouter()
+router = APIRouter(tags=["Recipe"])
 
 @router.get("/recipes")
 async def get_recipes(session: Session = Depends(get_async_session)):

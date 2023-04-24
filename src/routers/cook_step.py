@@ -7,7 +7,7 @@ from src.services import cook_steps
 from src.database.dependencies import get_async_session
 
 
-router = APIRouter()
+router = APIRouter(tags=["Cook_Step"])
 
 @router.get("/cook_steps")
 async def get_cook_steps(session: Session = Depends(get_async_session)):

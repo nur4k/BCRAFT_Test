@@ -9,7 +9,7 @@ from src.schemas.user import UserIn, UserOut, UserUpdate
 from src.database.dependencies import get_async_session
 
 
-router = APIRouter()
+router = APIRouter(tags=["User"])
 
 @router.get("/users")
 async def get_users(session: Session = Depends(get_async_session)):
