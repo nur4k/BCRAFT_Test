@@ -12,6 +12,28 @@ services:
     env_file:
       - .env
 
+  db-test:
+    container_name: postgres_test_db
+    image: postgres:15-alpine
+    networks:
+      - stack   
+    environment:
+      - POSTGRES_DB=bcraft
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+    ports:
+      - 5433:5432
+
+  pytest-test:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    networks:
+      - stack   
+    env_file:
+      - .env
+    entrypoint: "pytest -v -s ."
+
   backend:
     container_name: FastAPI_web
     depends_on:

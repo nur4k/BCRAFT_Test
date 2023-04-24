@@ -16,6 +16,7 @@ WORKDIR /app
 COPY alembic alembic
 COPY alembic.ini .
 COPY src src
+COPY tests tests
 COPY main.py ./
 RUN mkdir media
 COPY --from=builder /app/.venv .venv
